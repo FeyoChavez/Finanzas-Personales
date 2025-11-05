@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('movimientos', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
+
+            $table->enum('tipo', ['ingreso', 'gasto']); // 'income' or 'expense'
+            $table->decimal('monto', 10, 2);
+            $table->text('descripcion');
+            $table->string('foto')->nullable();
+            $table->date('fecha');
+            
             $table->timestamps();
         });
     }

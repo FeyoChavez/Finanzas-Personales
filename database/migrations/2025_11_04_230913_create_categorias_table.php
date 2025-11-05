@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
+
+            $table->string('nombre');
+            $table->enum('tipo', ['ingreso', 'gasto']);
+
+            
             $table->timestamps();
         });
     }
