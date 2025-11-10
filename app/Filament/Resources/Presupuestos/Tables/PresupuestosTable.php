@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Movimientos\Tables;
+namespace App\Filament\Resources\Presupuestos\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -12,50 +12,42 @@ use Filament\Notifications\Notification; // elimina el error de notification
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Actions\DeleteAction;
 
-class MovimientosTable
+class PresupuestosTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
+
                 TextColumn::make('id')
-                    ->sortable()
                     ->label('#')
-                    ->rowIndex(), // como un foreach para enumerar cada campo
-
-                TextColumn::make('user.name') // aqui habia un user_id 
-                    ->label('Usuario')
-                    ->searchable()
-                    ->sortable(),
-
-                TextColumn::make('categoria.nombre')
-                    ->label('Categoría')
-                    ->searchable()
-                    ->sortable(),
-
-                TextColumn::make('tipo')
                     ->sortable()
-                    ->badge(),
+                    ->rowIndex(),
 
-                TextColumn::make('monto')
+                TextColumn::make('user.name')
+                    ->label('Usuario')
                     ->numeric()
                     ->sortable(),
 
-                    TextColumn::make('descripcion')
-                    ->label('Descripción')
-                    ->limit(50)
-                    ->html()
-                    ->searchable()
+                TextColumn::make('categoria.nombre')
+                    ->numeric()
+                    ->label('Categoria')
                     ->sortable(),
 
-                ImageColumn::make('foto')
-                    ->label('Imagen')
-                    ->width(100)
-                    ->getStateUsing(fn ($record) => asset('storage/' . $record->foto)),
-
-                TextColumn::make('fecha')
-                    ->date()
+                TextColumn::make('monto_asignado')
+                    ->numeric()
                     ->sortable(),
+
+                TextColumn::make('monto_gastado')
+                    ->numeric()
+                    ->sortable(),
+
+                TextColumn::make('mes')
+                    ->searchable(),
+
+                TextColumn::make('anio')
+                    ->label('Año')
+                    ->searchable(),
 
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -68,17 +60,10 @@ class MovimientosTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                SelectFilter::make('tipo')
-                ->options([
-                    'gasto' => 'Gasto',
-                    'ingreso' => 'Ingreso',
-                ])
-                ->placeholder('Filtrar por tipo')
-                ->label('Tipo'),
+                //
             ])
 
 
-            
             ->recordActions([
                 EditAction::make()
                 ->button() // crea un boton para anadir estilo
@@ -89,14 +74,14 @@ class MovimientosTable
                 ->color('danger')
                 ->successNotification(
                     Notification::make()
-                    ->title('Movimiento eliminado')
-                    ->body('El movimiento ha sido eliminado correctamente.')
+                    ->title('Presupuesto eliminado')
+                    ->body('El presupuesto ha sido eliminado correctamente.')
                     ->success()
                     
                 ),
             ])
 
-            
+
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

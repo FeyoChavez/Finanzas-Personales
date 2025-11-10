@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\Movimientos\Pages;
+namespace App\Filament\Resources\Presupuestos\Pages;
 
-use App\Filament\Resources\Movimientos\MovimientoResource;
+use App\Filament\Resources\Presupuestos\PresupuestoResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Notifications\Notification;
 
-class EditMovimiento extends EditRecord
+class EditPresupuesto extends EditRecord
 {
-    protected static string $resource = MovimientoResource::class;
+    protected static string $resource = PresupuestoResource::class;
 
-
-     protected function getRedirectUrl(): string
+ protected function getRedirectUrl(): string
         {
             return $this->getResource()::getUrl('index'); // redirecciona al index al crear la categoria
         }
@@ -26,8 +25,8 @@ class EditMovimiento extends EditRecord
     
     protected function afterSave() {  // Guarda y muestra notificacion cuando se actualiza una categoria
         return Notification::make()
-        ->title('Movimiento actualizado')
-        ->body('El movimiento se ha actualizado exitosamente.')
+        ->title('Presupuesto actualizado')
+        ->body('El presupuesto se ha actualizado exitosamente.')
         ->success()
         ->send();
     }
@@ -38,8 +37,8 @@ class EditMovimiento extends EditRecord
             DeleteAction::make()
             ->successNotification(
                 Notification::make()
-                ->title('Movimiento eliminado')
-                ->body('El movimiento se ha eliminado exitosamente.')
+                ->title('Presupuesto eliminado')
+                ->body('El presupuesto se ha eliminado exitosamente.')
                 ->success()
             ),
         ];

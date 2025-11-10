@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\Movimientos\Pages;
+namespace App\Filament\Resources\Presupuestos\Pages;
 
-use App\Filament\Resources\Movimientos\MovimientoResource;
+use App\Filament\Resources\Presupuestos\PresupuestoResource;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Notifications\Notification;
 
-class CreateMovimiento extends CreateRecord
+class CreatePresupuesto extends CreateRecord
 {
-    protected static string $resource = MovimientoResource::class;
+    protected static string $resource = PresupuestoResource::class;
 
- 
-        protected function getRedirectUrl(): string
+
+            protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index'); // redirecciona al index al crear la categoria
     }
@@ -26,8 +26,8 @@ class CreateMovimiento extends CreateRecord
 
     protected function afterCreate() {
          return Notification::make()
-            ->title('Movimiento creado')
-            ->body('El movimiento se ha creado exitosamente.')
+            ->title('Presupuesto creado')
+            ->body('El presupuesto se ha creado exitosamente.')
             ->success()
             ->send();
     }
@@ -48,9 +48,5 @@ class CreateMovimiento extends CreateRecord
 
         ];
     }
-
-
-
-
 
 }

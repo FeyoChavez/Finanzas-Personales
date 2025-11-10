@@ -16,6 +16,11 @@ class Categoria extends Model
         return $this->hasMany(Movimiento::class);
         
     }
+
+        public function presupuesto()
+    {
+        return $this->hasMany(Presupuesto::class);
+    }
     
 
 }

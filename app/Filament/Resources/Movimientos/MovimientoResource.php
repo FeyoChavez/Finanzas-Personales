@@ -18,7 +18,7 @@ class MovimientoResource extends Resource
 {
     protected static ?string $model = Movimiento::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ChartPie;
 
     public static function form(Schema $schema): Schema
     {
